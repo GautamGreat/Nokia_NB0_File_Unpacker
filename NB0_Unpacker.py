@@ -43,7 +43,7 @@ if len(sys.argv) >= 3:
     elif sys.argv[1] == "-u":
         print "Unpacking to %s" % (sys.argv[3])
         if not os.path.exists(sys.argv[3]):
-            os.mkdir(sys.argv[3], exist_ok=False)
+            os.mkdir(sys.argv[3])
 
         for f in files_info:
             print "Unpacking %s" % f[4]
