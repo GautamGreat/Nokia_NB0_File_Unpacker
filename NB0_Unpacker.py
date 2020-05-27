@@ -2,6 +2,8 @@ import struct
 import sys
 import os
 
+CHUNK_SIZE = 1024 * 1024
+
 def files_information(nb0_file_object, files_count):
     file_info = []
     for i in range(0, files_count):
@@ -17,9 +19,9 @@ def unpack_file(file_detail, output_path, nb0_file_object, real_offset):
     nb0_file_object.seek(real_offset + file_detail[0])
 
     while counter != file_detail[1]:
-        if file_detail[1] - counter > 1048576:
-            new_file.write(nb0_file_object.read(1048576))
-            counter += 1048576
+        if file_detail[1] - counter > CHUNK_SIZE:
+            new_file.write(nb0_file_object.read(CHUNK_SIZE))
+            counter += CHUNK_SIZE
         else:
             new_file.write(nb0_file_object.read(file_detail[1] - counter))
             counter += file_detail[1] - counter
